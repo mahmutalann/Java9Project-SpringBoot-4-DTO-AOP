@@ -1,19 +1,26 @@
 package codingio.northwind.entities.concretes;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity; //This will use to jpa infrastructure.
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
 
 @Data //This provides that lombok.
 @Entity //It says Product class called database object. This is annotation method. It shows to which class belongs to the layer. Also, annotation is that to collect data of class or function at the execution time.
 @Table(name = "products")
+@AllArgsConstructor //It creates a constructor using fields via Lombok. 
+@NoArgsConstructor //It creates a single constructor via Lombok. 
 public class Product {
 	@Id
-	@GeneratedValue //Creating id value method
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //Creating id value method with increment.
 	@Column(name = "product_id")
 	private int id;
 	
@@ -32,19 +39,6 @@ public class Product {
 	@Column(name = "quantity_per_unit")
 	private String quantityPerUnit;
 	
-	public Product() {
-		
-	}
-	
-	public Product(int id, int categoryId, String productName, double unitPrice, short unitsInStock,
-			String quantityPerUnit) {
-		super();
-		this.id = id;
-		this.categoryId = categoryId;
-		this.productName = productName;
-		this.unitPrice = unitPrice;
-		this.unitsInStock = unitsInStock;
-		this.quantityPerUnit = quantityPerUnit;
-	}
+
 	
 }
