@@ -14,6 +14,7 @@ import codingio.northwind.business.abstracts.ProductService;
 import codingio.northwind.core.utilities.results.DataResult;
 import codingio.northwind.core.utilities.results.Result;
 import codingio.northwind.entities.concretes.Product;
+import codingio.northwind.entities.dtos.ProductWithCategoryDto;
 
 @RestController //It says that this class is controller.
 @RequestMapping("/api/products")
@@ -30,6 +31,11 @@ public class ProductsController {
 	@GetMapping("/getall") //if it wants to data it is called GetRequest.
 	public DataResult<List<Product>> getAll(){
 			return this.productService.getAll();
+	}
+	
+	@GetMapping("/getProductWithCategoryDetails")
+	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails(){
+		return this.productService.getProductWithCategoryDetails();
 	}
 	
 	@PostMapping("/add")

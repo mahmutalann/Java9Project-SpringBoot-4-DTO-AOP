@@ -15,6 +15,7 @@ import codingio.northwind.core.utilities.results.SuccessDataResult;
 import codingio.northwind.core.utilities.results.SuccessResult;
 import codingio.northwind.dataAccess.abstracts.ProductDao;
 import codingio.northwind.entities.concretes.Product;
+import codingio.northwind.entities.dtos.ProductWithCategoryDto;
 
 @Service //It gives information to Spring that the class runs as a service duty.
 public class ProductManager implements ProductService{
@@ -85,5 +86,11 @@ public class ProductManager implements ProductService{
 	Sort sort = Sort.by(Sort.Direction.DESC, "productName");
 			return new SuccessDataResult<List<Product>> (this.productDao.findAll(sort), "Success");
 	}
+
+	@Override
+	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+		return new SuccessDataResult<List<ProductWithCategoryDto>> (this.productDao.getProductWithCategoryDetails(), "Data Listed");
+	}
+
 
 }
